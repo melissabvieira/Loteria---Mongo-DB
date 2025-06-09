@@ -120,7 +120,18 @@
     </div>
 
     <div class="form-group">
-      <label for="numeros_apostados">Números Apostados (5 a 15 números entre 1 e 80, separados por vírgula)</label>
+  <label for="tipo_aposta">Tipo de aposta</label>
+  <select class="form-control" name="tipo_aposta" id="tipo_aposta" required>
+    <option value="" disabled selected>Selecione o tipo de aposta</option>
+    <option value="simples">Simples - 5 números (R$ 2,50)</option>
+    <option value="multipla_1">Múltipla - 6 números (R$ 15,00)</option>
+    <option value="multipla_2">Múltipla - 8 números (R$ 90,00)</option>
+  </select>
+    </div>
+
+
+    <div class="form-group">
+      <label for="numeros_apostados">Números Apostados (5 a 8 números entre 1 e 80, separados por vírgula)</label>
       <input type="text" class="form-control" name="numeros_apostados" placeholder="Ex: 5,12,34,55,70" required>
     </div>
 
