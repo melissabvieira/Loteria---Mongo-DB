@@ -101,8 +101,7 @@
 <header>
   <div class="logo">QUINA</div>
   <div class="acoes">
-    <a href="home.php"><div>Home</div></a>
-    <a href="minhas_apostas.php"><div>Ver Apostas</div></a>
+    <a href="minhas_apostas.php"><div>Minhas Apostas</div></a>
   </div>
 </header>
 
