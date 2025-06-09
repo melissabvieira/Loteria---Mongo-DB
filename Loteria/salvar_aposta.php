@@ -1,31 +1,49 @@
 <?php
-require 'vendor/autoload.php';
+$tipo_aposta = $_POST['tipo_aposta'] ?? null;
 
-$cliente = new MongoDB\Client("mongodb://localhost:27017");
-$colecao = $cliente->loteria->apostas;
 
-$nome = $_POST['nome_apostador'];
-$data = $_POST['data_aposta'];
-$tipo = $_POST['tipo_aposta'];
-$numeros = array_map('intval', explode(',', $_POST['numeros_apostados']));
-$concurso = intval($_POST['concurso_numero']);
-
-// Validação: 5 a 15 números entre 1 e 80
-$validos = array_filter($numeros, fn($n) => $n >= 1 && $n <= 80);
-if (count($validos) < 5 || count($validos) > 15) {
-    die("Erro: Você deve apostar de 5 a 15 números entre 1 e 80.");
-}
-
-$documento = [
-    "nome_apostador" => $nome,
-    "data_aposta" => new MongoDB\BSON\UTCDateTime(strtotime($data) * 1000),
-    "tipo_aposta" => $tipo,
-    "numeros_apostados" => $validos,
-    "concurso_numero" => $concurso
+$tipos = [
+  'simples' => [
+    'nome' => 'Simples',
+    'qtd_numeros' => 5,
+    'preco' => 2.50
+  ],
+  'multipla_1' => [
+    'nome' => 'Múltipla',
+    'qtd_numeros' => 6,
+    'preco' => 15.00
+  ],
+  'multipla_2' => [
+    'nome' => 'Múltipla',
+    'qtd_numeros' => 8,
+    'preco' => 90.00
+  ]
 ];
 
-$colecao->insertOne($documento);
 
-echo "<h3>Aposta registrada com sucesso!</h3>";
-echo "<a href='registrar_aposta.php'>Voltar</a>";
+$dados_tipo = $tipos[$tipo_aposta] ?? null;
+if (!$dados_tipo) {
+  die("Tipo de aposta inválido");
+}
+
+$numeros_str = $_POST['numeros_apostados'] ?? '';
+$numeros = array_filter(array_map('intval', explode(',', $numeros_str)));
+
+
+if (count($numeros) != $dados_tipo['qtd_numeros']) {
+  die("Erro: Para o tipo de aposta '{$dados_tipo['nome']}' você deve apostar exatamente {$dados_tipo['qtd_numeros']} números.");
+}
+
+
+$aposta = [
+  'nome_apostador' => $_POST['nome_apostador'] ?? 'Anônimo',
+  'data_aposta' => date('Y-m-d H:i:s'),
+  'tipo_aposta' => $tipo_aposta,
+  'numeros_apostados' => $numeros,
+  'preco' => $dados_tipo['preco'],
+  'concurso_numero' => $_POST['concurso_numero'] ?? 0
+];
+
+
+echo "Aposta registrada com sucesso!";
 ?>
