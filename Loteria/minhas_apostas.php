@@ -1,9 +1,4 @@
-<?php
-require 'bd.php';
 
-$cursor = $colecao_apostas->find([], ['sort' => ['data_aposta' => -1]]);
-$apostas = iterator_to_array($cursor);
-?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -74,17 +69,11 @@ $apostas = iterator_to_array($cursor);
 
 <header>
   <h4>Minhas Apostas</h4>
+  <div class="acoes">
+  <a href="home.php"><div>Voltar </div></a>
 </header>
 
-<main class="container mt-4 mb-5">
-  <!-- Botão Voltar -->
-  <div class="acoes">
-    <a href="home.php">
-      <div>Voltar para página inicial</div>
-    </a>
-  </div>
 
-  <!-- Apostas -->
   <?php if (count($apostas) === 0): ?>
     <div class="alert alert-info">Nenhuma aposta registrada.</div>
   <?php else: ?>
