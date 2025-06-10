@@ -1,4 +1,8 @@
-
+<?php
+require 'bd.php';
+$cursor = $colecao_apostas->find([], ['sort' => ['data_aposta' => -1]]);
+$apostas = iterator_to_array($cursor);
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -70,7 +74,7 @@
 <header>
   <h4>Minhas Apostas</h4>
   <div class="acoes">
-  <a href="home.php"><div>Voltar </div></a>
+  <a href="home.php"><div>Voltar</div></a>
 </header>
 
 
