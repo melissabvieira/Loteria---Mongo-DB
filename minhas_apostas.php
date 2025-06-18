@@ -85,13 +85,18 @@ $apostas = iterator_to_array($cursor); //transformando o resultado num array PHP
         <div class="card-body">
           <h5 class="card-title"><?= htmlspecialchars($aposta['nome_apostador']) ?></h5>
           <p class="card-text">
-            <strong>Tipo:</strong> <?= htmlspecialchars($aposta['tipo_aposta']) ?><br>
-            <strong>Concurso:</strong> <?= htmlspecialchars($aposta['concurso_numero']) ?><br>
-            <strong>Números:</strong> <?= implode(', ', $aposta['numeros_apostados']->getArrayCopy())?><br>
-            <strong>Data:</strong>
-            <?= isset($aposta['data_aposta']) && $aposta['data_aposta'] instanceof MongoDB\BSON\UTCDateTime
-                ? $aposta['data_aposta']->toDateTime()->format('d/m/Y') : 'Indefinida' ?>
-          </p>
+  <strong>Tipo:</strong> <?= htmlspecialchars($aposta['tipo_aposta']) ?><br>
+  <strong>Concurso:</strong> <?= htmlspecialchars($aposta['concurso_numero']) ?><br>
+  <strong>Números:</strong> <?= implode(', ', $aposta['numeros_apostados']->getArrayCopy()) ?><br>
+  <strong>Data:</strong>
+  <?= isset($aposta['data_aposta']) && $aposta['data_aposta'] instanceof MongoDB\BSON\UTCDateTime
+      ? $aposta['data_aposta']->toDateTime()->format('d/m/Y H:i') : 'Indefinida' ?>
+  </p>
+  <div>
+  <a href="editar_aposta.php?id=<?= $aposta['_id'] ?>" class="btn btn-warning btn-sm">✏️ Editar</a>
+  <a href="excluir_aposta.php?id=<?= $aposta['_id'] ?>" class="btn btn-danger btn-sm"
+     onclick="return confirm('Tem certeza que deseja excluir esta aposta?');">🗑️ Excluir</a>
+      </div>
         </div>
       </div>
     <?php endforeach; ?>
