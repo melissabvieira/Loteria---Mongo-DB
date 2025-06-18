@@ -1,2 +1,0 @@
- - Inserir as extensão PHP/MONGO, pois o seguinte erro está sendo exibido: Warning: require(vendor/autoload.php) ()
- - Testar conexão com o mongo ()
