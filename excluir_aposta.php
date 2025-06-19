@@ -11,7 +11,7 @@ try {
   $colecao_apostas->deleteOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
   $mensagem = "✅ Aposta excluída com sucesso!";
 } catch (Exception $e) {
-  $mensagem = "Erro ao excluir a aposta: " . $e->getMessage();
+  $mensagem = "❌ Erro ao excluir a aposta: " . $e->getMessage();
 }
 ?>
 

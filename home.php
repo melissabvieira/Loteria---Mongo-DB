@@ -2,7 +2,7 @@
 require 'vendor/autoload.php';
 require 'bd.php';
 
-$concursos = $colecao_concursos->find([], ['sort' => ['numero_concurso' => -1], 'limit' => 3]);
+$concursos = $colecao_concursos->find([], ['sort' => ['concurso_numero' => -1], 'limit' => 3]);
 ?>
 
 <!DOCTYPE html>
@@ -112,6 +112,15 @@ $concursos = $colecao_concursos->find([], ['sort' => ['numero_concurso' => -1], 
       margin-top: 0;
       color: rgb(90, 43, 201);
     }
+
+    .btn-primary {
+      background-color: rgb(90, 43, 201);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: rgb(70, 30, 180);
+    }
   </style>
 </head>
 <body>
@@ -129,7 +138,7 @@ $concursos = $colecao_concursos->find([], ['sort' => ['numero_concurso' => -1], 
   <section>
     <?php foreach ($concursos as $concurso): ?>
       <div class="noticia-card">
-        <h5>Concurso <?= $concurso['numero_concurso'] ?? '' ?></h5>
+        <h5>Concurso <?= $concurso['concurso_numero'] ?? '' ?></h5>
 
         <p><strong>Data do Sorteio:</strong>
           <?php
@@ -166,6 +175,10 @@ $concursos = $colecao_concursos->find([], ['sort' => ['numero_concurso' => -1], 
         </p>
 
         <p><strong>Premiação:</strong> <?= $concurso['premiacao'] ?? 'Não informada' ?></p>
+
+        <a href="ganhadores.php?concurso=<?= $concurso['concurso_numero'] ?>" class="btn btn-sm btn-primary">Ver Ganhadores</a>
+
+
       </div>
     <?php endforeach; ?>
   </section>

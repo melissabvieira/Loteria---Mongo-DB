@@ -12,16 +12,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($concurso_numero > 0 && $data_sorteio && $numeros_str && $premiacao) {
         $numeros = array_filter(array_map('intval', explode(',', $numeros_str)));
 
-        try {
-            $colecao_concursos->insertOne([
-                'concurso_numero' => $concurso_numero,
-                'data_sorteio' => new MongoDB\BSON\UTCDateTime(strtotime($data_sorteio) * 1000),
-                'numeros_sorteados' => $numeros,
-                'premiacao' => $premiacao
-            ]);
-            $mensagem = "✅ Concurso registrado com sucesso!";
-        } catch (Exception $e) {
-            $mensagem = "Erro ao salvar concurso: " . $e->getMessage();
+        if (count($numeros) !== 5) {
+            $mensagem = "⚠️ Informe exatamente 5 números para o sorteio.";
+        } elseif (count(array_unique($numeros)) !== 5) {
+            $mensagem = "⚠️ Não pode haver números repetidos no sorteio.";
+        } elseif (min($numeros) < 1 || max($numeros) > 80) {
+            $mensagem = "⚠️ Os números devem estar entre 1 e 80.";
+        } else {
+            try {
+                $colecao_concursos->insertOne([
+                    'concurso_numero' => $concurso_numero,
+                    'data_sorteio' => new MongoDB\BSON\UTCDateTime(strtotime($data_sorteio) * 1000),
+                    'numeros_sorteados' => $numeros,
+                    'premiacao' => $premiacao
+                ]);
+                $mensagem = "✅ Concurso registrado com sucesso!";
+            } catch (Exception $e) {
+                $mensagem = "Erro ao salvar concurso: " . $e->getMessage();
+            }
         }
     } else {
         $mensagem = "Por favor, preencha todos os campos corretamente.";
@@ -68,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="form-group">
         <label>Números Sorteados (separados por vírgula):</label>
-        <input type="text" name="numeros_sorteados" class="form-control" placeholder="Ex: 05,12,34,55,70" required>
+        <input type="text" name="numeros_sorteados" class="form-control" placeholder="Ex: 5,12,34,55,70" required>
     </div>
 
     <div class="form-group">

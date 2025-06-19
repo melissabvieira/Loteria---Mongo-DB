@@ -1,7 +1,7 @@
 <?php
-require 'bd.php'; //Ele está importando a conexão
-$cursor = $colecao_apostas->find([], ['sort' => ['data_aposta' => -1]]); //Buscando todas as apostas ordenadas da mais recente para a mais antiga
-$apostas = iterator_to_array($cursor); //transformando o resultado num array PHP comum
+require 'bd.php'; 
+$cursor = $colecao_apostas->find([], ['sort' => ['data_aposta' => -1]]); 
+$apostas = iterator_to_array($cursor); 
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
