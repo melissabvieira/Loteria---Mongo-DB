@@ -34,24 +34,40 @@ function verificarFaixaPremio($acertos) {
     }
 }
 
-📌 ### Exemplo de documento de aposta:
+###📌Exemplo de documento de aposta:
 
 {
-  "_id": ObjectId("66af987c5e4c8c1234567890"),
-  "nome_apostador": "Carlos Souza",
-  "data_aposta": ISODate("2025-06-18T00:00:00Z"),
-  "tipo_aposta": "simples",
-  "concurso_numero": 123,
-  "numeros_apostados": [10, 20, 30, 40, 50]
+  
+_id
+685200fd25adfba701088c36
+nome_apostador
+"Melissa"
+data_aposta
+2025-06-17T23:57:49.163+00:00
+tipo_aposta
+"simples"
+
+numeros_apostados
+Array (5)
+preco
+2.5
+concurso_numero
+2
 }
 
-📌 ### Exemplo de documento do concurso:
+###📌Exemplo de documento do concurso:
 
 {
-  "_id": ObjectId("66af98855e4c8c1234567891"),
-  "concurso_numero": 123,
-  "data_sorteio": ISODate("2025-06-19T00:00:00Z"),
-  "numeros_sorteados": [10, 20, 30, 40, 50],
-  "premiacao": "R$ 500.000,00"
+ _id
+6854663241d2a0d3f8000a45
+concurso_numero
+2
+data_sorteio
+2025-06-18T22:00:00.000+00:00
+
+numeros_sorteados
+Array (5)
+premiacao
+"R$1.500,000,00"
 }
 
