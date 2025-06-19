@@ -1,4 +1,4 @@
-📌### Loteria escolhida: Quina
+### 📌Loteria escolhida: Quina
 
 A Quina é um jogo de loteria da Caixa Econômica Federal, no qual o apostador escolhe de 5 a 15 números, dentre os 80 disponíveis (numerados de 1 a 80).
 
