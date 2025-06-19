@@ -19,7 +19,7 @@ $apostas = iterator_to_array($cursor); //transformando o resultado num array PHP
     header {
       background-color: rgb(90, 43, 201);
       color: white;
-      padding: 20px 40px;
+      padding: 20px 42px;
       position: fixed;
       top: 0;
       width: 100%;
@@ -71,7 +71,7 @@ $apostas = iterator_to_array($cursor); //transformando o resultado num array PHP
 <body>
 
 <header>
-  <h4>Minhas Apostas</h4>
+  <h4>Apostas</h4>
   <div class="acoes">
   <a href="home.php"><div>Voltar</div></a>
 </header>
