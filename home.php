@@ -132,23 +132,35 @@ $concursos = $colecao_concursos->find([], ['sort' => ['numero_concurso' => -1], 
         <h5>Concurso <?= $concurso['numero_concurso'] ?? '' ?></h5>
 
         <p><strong>Data do Sorteio:</strong>
-       <?php
-        if (isset($concurso['data_sorteio']) && $concurso['data_sorteio'] instanceof MongoDB\BSON\UTCDateTime) {
-       echo $concurso['data_sorteio']->toDateTime()->format('d/m/Y');
-      } else {
-       echo 'Data não informada';
-      }
+          <?php
+          if (isset($concurso['data_sorteio']) && $concurso['data_sorteio'] instanceof MongoDB\BSON\UTCDateTime) {
+              echo $concurso['data_sorteio']->toDateTime()->format('d/m/Y');
+          } else {
+              echo 'Data não informada';
+          }
           ?>
         </p>
 
         <p><strong>Números Sorteados:</strong>
           <?php
-          if (isset($concurso['numeros_sorteados']) && $concurso['numeros_sorteados'] instanceof MongoDB\Model\BSONArray) {
-              echo implode(', ', $concurso['numeros_sorteados']->getArrayCopy());
-          } elseif (isset($concurso['numeros_sorteados']) && is_array($concurso['numeros_sorteados'])) {
-              echo implode(', ', $concurso['numeros_sorteados']);
+          $dataHoje = new DateTime('today');
+
+          if (isset($concurso['data_sorteio']) && $concurso['data_sorteio'] instanceof MongoDB\BSON\UTCDateTime) {
+              $dataConcurso = $concurso['data_sorteio']->toDateTime();
+
+              if ($dataConcurso > $dataHoje) {
+                  echo '(Em breve)';
+              } else {
+                  if (isset($concurso['numeros_sorteados']) && $concurso['numeros_sorteados'] instanceof MongoDB\Model\BSONArray) {
+                      echo implode(', ', $concurso['numeros_sorteados']->getArrayCopy());
+                  } elseif (isset($concurso['numeros_sorteados']) && is_array($concurso['numeros_sorteados'])) {
+                      echo implode(', ', $concurso['numeros_sorteados']);
+                  } else {
+                      echo 'Ainda não sorteado';
+                  }
+              }
           } else {
-              echo 'Ainda não sorteado';
+              echo 'Data do sorteio inválida';
           }
           ?>
         </p>
