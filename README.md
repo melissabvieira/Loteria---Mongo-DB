@@ -34,7 +34,7 @@ function verificarFaixaPremio($acertos) {
     }
 }
 
-###📌Exemplo de documento de aposta:
+### 📌Exemplo de documento de aposta:
 
 {
   
@@ -55,7 +55,7 @@ concurso_numero
 2
 }
 
-###📌Exemplo de documento do concurso:
+### 📌Exemplo de documento do concurso:
 
 {
  _id
