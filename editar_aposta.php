@@ -36,8 +36,16 @@ $numeros = implode(',', $aposta['numeros_apostados']->getArrayCopy());
       <label>Tipo da Aposta:</label>
       <select name="tipo_aposta" class="form-control">
         <option value="simples" <?= $aposta['tipo_aposta'] == 'simples' ? 'selected' : '' ?>>Simples</option>
-        <option value="multipla_1" <?= $aposta['tipo_aposta'] == 'multipla_1' ? 'selected' : '' ?>>Múltipla 6 números</option>
-        <option value="multipla_2" <?= $aposta['tipo_aposta'] == 'multipla_2' ? 'selected' : '' ?>>Múltipla 8 números</option>
+        <option value="multipla_6" <?= $aposta['tipo_aposta'] == 'multipla_6' ? 'selected' : '' ?>>Múltipla 6 números</option>
+        <option value="multipla_7" <?= $aposta['tipo_aposta'] == 'multipla_7' ? 'selected' : '' ?>>Múltipla 7 números</option>
+        <option value="multipla_8" <?= $aposta['tipo_aposta'] == 'multipla_8' ? 'selected' : '' ?>>Múltipla 8 números</option>
+        <option value="multipla_9" <?= $aposta['tipo_aposta'] == 'multipla_9' ? 'selected' : '' ?>>Múltipla 9 números</option>
+        <option value="multipla_10" <?= $aposta['tipo_aposta'] == 'multipla_10' ? 'selected' : '' ?>>Múltipla 10 números</option>
+        <option value="multipla_11" <?= $aposta['tipo_aposta'] == 'multipla_11' ? 'selected' : '' ?>>Múltipla 11 números</option>
+        <option value="multipla_12" <?= $aposta['tipo_aposta'] == 'multipla_12' ? 'selected' : '' ?>>Múltipla 12 números</option>
+        <option value="multipla_13" <?= $aposta['tipo_aposta'] == 'multipla_13' ? 'selected' : '' ?>>Múltipla 13 números</option>
+        <option value="multipla_14" <?= $aposta['tipo_aposta'] == 'multipla_14' ? 'selected' : '' ?>>Múltipla 14 números</option>
+        <option value="multipla_15" <?= $aposta['tipo_aposta'] == 'multipla_15' ? 'selected' : '' ?>>Múltipla 15 números</option>
       </select>
     </div>
 

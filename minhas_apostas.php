@@ -1,7 +1,7 @@
 <?php
-require 'bd.php'; //Ele está importando a conexão
-$cursor = $colecao_apostas->find([], ['sort' => ['data_aposta' => -1]]); //Buscando todas as apostas ordenadas da mais recente para a mais antiga
-$apostas = iterator_to_array($cursor); //transformando o resultado num array PHP comum
+require 'bd.php'; 
+$cursor = $colecao_apostas->find([], ['sort' => ['data_aposta' => -1]]); 
+$apostas = iterator_to_array($cursor); 
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -19,7 +19,7 @@ $apostas = iterator_to_array($cursor); //transformando o resultado num array PHP
     header {
       background-color: rgb(90, 43, 201);
       color: white;
-      padding: 20px 40px;
+      padding: 20px 42px;
       position: fixed;
       top: 0;
       width: 100%;
@@ -71,7 +71,7 @@ $apostas = iterator_to_array($cursor); //transformando o resultado num array PHP
 <body>
 
 <header>
-  <h4>Minhas Apostas</h4>
+  <h4>Apostas</h4>
   <div class="acoes">
   <a href="home.php"><div>Voltar</div></a>
 </header>
@@ -90,12 +90,12 @@ $apostas = iterator_to_array($cursor); //transformando o resultado num array PHP
   <strong>Números:</strong> <?= implode(', ', $aposta['numeros_apostados']->getArrayCopy()) ?><br>
   <strong>Data:</strong>
   <?= isset($aposta['data_aposta']) && $aposta['data_aposta'] instanceof MongoDB\BSON\UTCDateTime
-      ? $aposta['data_aposta']->toDateTime()->format('d/m/Y H:i') : 'Indefinida' ?>
+      ? $aposta['data_aposta']->toDateTime()->format('d/m/Y') : 'Indefinida' ?>
   </p>
   <div>
-  <a href="editar_aposta.php?id=<?= $aposta['_id'] ?>" class="btn btn-warning btn-sm">✏️ Editar</a>
+  <a href="editar_aposta.php?id=<?= $aposta['_id'] ?>" class="btn btn-warning btn-sm">Editar</a>
   <a href="excluir_aposta.php?id=<?= $aposta['_id'] ?>" class="btn btn-danger btn-sm"
-     onclick="return confirm('Tem certeza que deseja excluir esta aposta?');">🗑️ Excluir</a>
+     onclick="return confirm('Tem certeza que deseja excluir esta aposta?');">Excluir</a>
       </div>
         </div>
       </div>
